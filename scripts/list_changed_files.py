@@ -7,28 +7,21 @@ import sys
 import subprocess
 
 
-def list_changed_files(to_branch):
-    """List the files that have changed between HEAD and the given branch."""
-    cmd = ["git", "diff", "--name-only", "HEAD", "--", to_branch]
-    try:
-      output = subprocess.check_output(cmd).decode("utf-8")
-    except subprocess.CalledProcessError as e:
-        print(f"Failed to run {cmd}, exiting: {e}")
-        sys.exit(1)
+def list_changed_files(from_branch, to_branch):
+    """Return a list of files that have changed between two branches."""
+    cmd = ["git", "diff", "--name-only", from_branch, "--", to_branch]
+    output = subprocess.check_output(cmd, universal_newlines=True)
     return output.splitlines()
 
 
 def main():
     """Print the changed files to stdout."""
-    to_branch = os.environ.get("GITHUB_BASE_REF")
-    if not to_branch:
-        print("GITHUB_BASE_REF not set, exiting")
-        sys.exit(1)
-
+    to_branch = os.environ["GITHUB_BASE_REF"]
+    from_branch = os.environ["GITHUB_HEAD_REF"]
+    changed_files = list_changed_files(from_branch, to_branch)
     print("Changed files:")
-    changed_files = list_changed_files(to_branch)
-    for f in changed_files:
-        print(f)
+    for file in changed_files:
+        print(file)
 
 
 if __name__ == "__main__":
