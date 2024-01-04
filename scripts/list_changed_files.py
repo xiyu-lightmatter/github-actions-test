@@ -21,6 +21,7 @@ def main():
         print("GITHUB_BASE_REF not set, exiting")
         sys.exit(1)
 
+    print("Changed files:")
     changed_files = list_changed_files(to_branch)
     for f in changed_files:
         print(f)
