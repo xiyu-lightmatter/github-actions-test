@@ -9,7 +9,7 @@ import subprocess
 
 def list_changed_files(to_branch):
     """List the files that have changed between HEAD and the given branch."""
-    cmd = ["git", "diff", "--name-only", "HEAD", to_branch]
+    cmd = ["git", "diff", "--name-only", "HEAD", "--", to_branch]
     try:
       output = subprocess.check_output(cmd).decode("utf-8")
     except subprocess.CalledProcessError as e:
