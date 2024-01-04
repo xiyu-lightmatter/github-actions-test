@@ -3,10 +3,7 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 
 on:
   pull_request:
-    branches:
-      - '**'  # All branches
-
-  push:
+    types: [opened, synchronize, enqueued]
     branches:
       - '**'  # All branches
 
