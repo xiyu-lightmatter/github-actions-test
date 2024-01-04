@@ -2,11 +2,6 @@ name: Push Actions
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 
 on:
-  pull_request:
-    types: [opened, synchronize, enqueued]
-    branches:
-      - '**'  # All branches
-
   push:
     branches:
       - main
