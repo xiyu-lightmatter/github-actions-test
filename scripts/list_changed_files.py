@@ -17,7 +17,8 @@ def parse_args():
 
 def list_changed_files(from_branch, to_branch):
     """Return a list of files that have changed between two branches."""
-    cmd = ["git", "diff", "--name-only", from_branch, f'origin/{to_branch}']
+    # Removes the refs/ prefix from the branch names.
+    cmd = ["git", "diff", "--name-only", from_branch.replace("refs/", ""), f'origin/{to_branch}']
     output = subprocess.check_output(cmd, universal_newlines=True)
     return output.splitlines()
 
