@@ -10,7 +10,11 @@ import subprocess
 def list_changed_files(to_branch):
     """List the files that have changed between HEAD and the given branch."""
     cmd = ["git", "diff", "--name-only", "HEAD", to_branch]
-    output = subprocess.check_output(cmd).decode("utf-8")
+    try:
+      output = subprocess.check_output(cmd).decode("utf-8")
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to run {cmd}, exiting: {e}")
+        sys.exit(1)
     return output.splitlines()
 
 
