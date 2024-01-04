@@ -32,7 +32,8 @@ def main():
     args = parse_args()
     changed_files = list_changed_files.list_changed_files(args.base_ref,
                                                           args.head_ref)
-    run_flake8(changed_files)
+    py_files = [f for f in changed_files if f.endswith(".py")]
+    run_flake8(py_files)
 
 
 if __name__ == "__main__":
