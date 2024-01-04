@@ -71,4 +71,4 @@ jobs:
       - name: List out changed files
         run: | # Runs the scripts/list_changed_files.py
           pwd
-          python3 scripts/list_changed_files.py
+          python3 scripts/list_changed_files.py "${{ github.ref }}" "${{ github.base_ref }}"
