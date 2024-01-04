@@ -22,6 +22,54 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - run: | # Runs the scripts/list_changed_files.py
+      - name: Prints out the pull_request information
+        run: |
+          echo "Pull Request Number: ${{ github.event.number }}"
+          echo "Pull Request Title: ${{ github.event.pull_request.title }}"
+          echo "Pull Request Body: ${{ github.event.pull_request.body }}"
+          echo "Pull Request Author: ${{ github.event.pull_request.user.login }}"
+          echo "Pull Request Assignee: ${{ github.event.pull_request.assignee.login }}"
+          echo "Pull Request Reviewers: ${{ github.event.pull_request.requested_reviewers }}"
+          echo "Pull Request Labels: ${{ github.event.pull_request.labels }}"
+          echo "Pull Request Milestone: ${{ github.event.pull_request.milestone }}"
+          echo "Pull Request Created At: ${{ github.event.pull_request.created_at }}"
+          echo "Pull Request Updated At: ${{ github.event.pull_request.updated_at }}"
+          echo "Pull Request Closed At: ${{ github.event.pull_request.closed_at }}"
+          echo "Pull Request Merged At: ${{ github.event.pull_request.merged_at }}"
+          echo "Pull Request Draft: ${{ github.event.pull_request.draft }}"
+          echo "Pull Request Merged: ${{ github.event.pull_request.merged }}"
+          echo "Pull Request Mergeable: ${{ github.event.pull_request.mergeable }}"
+          echo "Pull Request Merged By: ${{ github.event.pull_request.merged_by.login }}"
+          echo "Pull Request Base: ${{ github.event.pull_request.base.ref }}"
+          echo "Pull Request Head: ${{ github.event.pull_request.head.ref }}"
+          echo "Pull Request Commits: ${{ github.event.pull_request.commits }}"
+          echo "Pull Request Changed Files: ${{ github.event.pull_request.changed_files }}"
+          echo "Pull Request Additions: ${{ github.event.pull_request.additions }}"
+          echo "Pull Request Deletions: ${{ github.event.pull_request.deletions }}"
+          echo "Pull Request Changed Files: ${{ github.event.pull_request.changed_files }}"
+          echo "Pull Request Review Comments: ${{ github.event.pull_request.review_comments }}"
+          echo "Pull Request Review Comments URL: ${{ github.event.pull_request.review_comments_url }}"
+          echo "Pull Request Comments: ${{ github.event.pull_request.comments }}"
+          echo "Pull Request Comments URL: ${{ github.event.pull_request.comments_url }}"
+          echo "Pull Request Statuses URL: ${{ github.event.pull_request.statuses_url }}"
+          echo "Pull Request Commits URL: ${{ github.event.pull_request.commits_url }}"
+          echo "Pull Request Review Comments URL: ${{ github.event.pull_request.review_comments_url }}"
+          echo "Pull Request Review Comment URL: ${{ github.event.pull_request.review_comment_url }}"
+          echo "Pull Request Comments URL: ${{ github.event.pull_request.comments_url }}"
+          echo "Pull Request Issue URL: ${{ github.event.pull_request.issue_url }}"
+          echo "Pull Request URL: ${{ github.event.pull_request.url }}"
+          echo "Pull Request HTML URL: ${{ github.event.pull_request.html_url }}"
+          echo "Pull Request Diff URL: ${{ github.event.pull_request.diff_url }}"
+          echo "Pull Request Patch URL: ${{ github.event.pull_request.patch_url }}"
+          echo "Pull Request Number: ${{ github.event.pull_request.number }}"
+          echo "Pull Request Node ID: ${{ github.event.pull_request.node_id }}"
+          echo "Pull Request ID: ${{ github.event.pull_request.id }}"
+          echo "Pull Request User ID: ${{ github.event.pull_request.user.id }}"
+          echo "Pull Request User Node ID: ${{ github.event.pull_request.user.node_id }}"
+          echo "Pull Request User Avatar URL: ${{ github.event.pull_request.user.avatar_url }}"
+          echo "Pull Request User Gravatar ID: ${{ github.event.pull_request.user.gravatar_id }}"
+
+      - name: List out changed files
+        run: | # Runs the scripts/list_changed_files.py
           pwd
           python3 scripts/list_changed_files.py
