@@ -7,6 +7,10 @@ on:
     branches:
       - '**'  # All branches
 
+  push:
+    branches:
+      - main
+
 jobs:
   Explore-GitHub-Actions:
     runs-on: self-hosted
