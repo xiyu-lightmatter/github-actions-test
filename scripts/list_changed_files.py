@@ -10,15 +10,14 @@ import subprocess
 def parse_args():
     """Parse command-line arguments using argparse."""
     parser = argparse.ArgumentParser()
-    parser.add_argument("from_branch")
-    parser.add_argument("to_branch")
+    parser.add_argument("base_ref", help="The base ref to compare against.")
     return parser.parse_args()
 
 
-def list_changed_files(from_branch, to_branch):
+def list_changed_files(base_ref):
     """Return a list of files that have changed between two branches."""
     # Removes the refs/ prefix from the branch names.
-    cmd = ["git", "diff", "--name-only", from_branch.replace("refs/", ""), f'origin/{to_branch}']
+    cmd = ["git", "diff", "--name-only", f'origin/{base_ref}']
     output = subprocess.check_output(cmd, universal_newlines=True)
     return output.splitlines()
 
@@ -26,7 +25,7 @@ def list_changed_files(from_branch, to_branch):
 def main():
     """Print the changed files to stdout."""
     args = parse_args()
-    changed_files = list_changed_files(args.from_branch, args.to_branch)
+    changed_files = list_changed_files(args.base_ref)
     for f in changed_files:
         print(f)
 
