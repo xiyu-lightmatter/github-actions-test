@@ -22,5 +22,6 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - run: # Runs the scripts/list_changed_files.py
-          python scripts/list_changed_files.py
+      - run: | # Runs the scripts/list_changed_files.py
+          pwd
+          python3 scripts/list_changed_files.py
