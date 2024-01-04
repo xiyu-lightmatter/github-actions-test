@@ -7,7 +7,6 @@ current commit.
 
 
 import argparse
-import os
 import subprocess
 import list_changed_files
 

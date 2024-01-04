@@ -6,7 +6,6 @@ tests or not.
 """
 
 import argparse
-import os
 import subprocess
 
 
@@ -19,7 +18,7 @@ def parse_args():
     return parser.parse_args()
 
 
-def list_changed_files(base_ref, head_ref = ""):
+def list_changed_files(base_ref, head_ref=""):
     """Return a list of files that have changed between two branches.
 
     Note, head_ref is optional. If not provided, the current commit is used.
